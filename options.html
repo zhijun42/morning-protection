@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>Morning Protection 设置</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #faf7f2;
+        --fg: #1f1d1a;
+        --muted: #6f6a62;
+        --accent: #b4542a;
+        --card: #ffffff;
+        --border: #e6e0d6;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #16150f;
+          --fg: #f2efe8;
+          --muted: #a29c91;
+          --accent: #e89a6b;
+          --card: #201e17;
+          --border: #302d24;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 20px;
+        min-width: 340px;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+        font-size: 14px;
+      }
+      .wrap { max-width: 460px; margin: 0 auto; }
+      h1 { margin: 0 0 4px; font-size: 18px; }
+      .status {
+        margin: 0 0 20px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .status b { color: var(--accent); }
+      fieldset {
+        margin: 0 0 16px;
+        padding: 16px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--card);
+      }
+      legend { padding: 0 6px; font-size: 12px; color: var(--muted); }
+      label { display: block; margin-bottom: 6px; font-size: 13px; }
+      .row { display: flex; gap: 16px; }
+      .row > div { flex: 1; }
+      input[type="time"], textarea {
+        width: 100%;
+        padding: 8px 10px;
+        color: var(--fg);
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 14px;
+      }
+      textarea { min-height: 90px; resize: vertical; line-height: 1.6; }
+      .hint { margin: 8px 0 0; font-size: 12px; color: var(--muted); line-height: 1.6; }
+      .toggle { display: flex; align-items: center; gap: 8px; }
+      .toggle label { margin: 0; }
+      button {
+        padding: 9px 20px;
+        font-size: 14px;
+        color: #fff;
+        background: var(--accent);
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+      .saved { margin-left: 12px; font-size: 13px; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Morning Protection</h1>
+      <p class="status" id="status">读取中…</p>
+
+      <fieldset>
+        <legend>屏蔽时段</legend>
+        <div class="row">
+          <div>
+            <label for="blockStart">从（晚上）</label>
+            <input type="time" id="blockStart" />
+          </div>
+          <div>
+            <label for="blockEnd">到（早上）</label>
+            <input type="time" id="blockEnd" />
+          </div>
+        </div>
+        <p class="hint">跨过午夜是正常的：22:00 到 10:00 表示晚上十点之后、早上十点之前都不开放。</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>屏蔽网站</legend>
+        <textarea id="domains" spellcheck="false"></textarea>
+        <p class="hint">一行一个域名，子域名自动包含（xiaohongshu.com 会同时覆盖 www 和 app 等子域）。</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>总开关</legend>
+        <div class="toggle">
+          <input type="checkbox" id="enabled" />
+          <label for="enabled">启用屏蔽</label>
+        </div>
+      </fieldset>
+
+      <button id="save">保存</button>
+      <span class="saved" id="saved"></span>
+    </div>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Morning Protection",
+  "version": "1.0.0",
+  "description": "在设定的时间窗口内屏蔽指定网站，守住睡前和清晨的专注时间。",
+  "permissions": [
+    "declarativeNetRequest",
+    "alarms",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "options_page": "options.html",
+  "action": {
+    "default_popup": "options.html",
+    "default_title": "Morning Protection"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "blocked.html"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

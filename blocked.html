@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>这段时间留给自己</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #faf7f2;
+        --fg: #1f1d1a;
+        --muted: #6f6a62;
+        --accent: #b4542a;
+        --card: #ffffff;
+        --border: #e6e0d6;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #16150f;
+          --fg: #f2efe8;
+          --muted: #a29c91;
+          --accent: #e89a6b;
+          --card: #201e17;
+          --border: #302d24;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+      }
+      main {
+        width: 100%;
+        max-width: 480px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 40px 32px;
+        text-align: center;
+      }
+      h1 { margin: 0 0 12px; font-size: 24px; letter-spacing: 0.01em; }
+      p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
+      .countdown {
+        margin: 28px 0 8px;
+        font-size: 44px;
+        font-variant-numeric: tabular-nums;
+        font-weight: 600;
+        color: var(--accent);
+      }
+      .window { margin-top: 24px; font-size: 13px; color: var(--muted); }
+      button {
+        margin-top: 28px;
+        padding: 9px 18px;
+        font-size: 14px;
+        color: var(--fg);
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        cursor: pointer;
+      }
+      button:hover { border-color: var(--accent); color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 id="title">这段时间留给自己</h1>
+      <p id="subtitle">这个网站现在不开放。</p>
+      <div class="countdown" id="countdown">--:--:--</div>
+      <p id="unlock-hint">距离解锁</p>
+      <div class="window" id="window"></div>
+      <button id="options">修改设置</button>
+    </main>
+    <script type="module" src="blocked.js"></script>
+  </body>
+</html>
